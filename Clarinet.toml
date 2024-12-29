@@ -1,0 +1,29 @@
+[project]
+name = 'DATC'
+description = ''
+authors = []
+telemetry = true
+cache_dir = './.cache'
+requirements = []
+[contracts.future-nodes]
+path = 'contracts/future-nodes.clar'
+clarity_version = 2
+epoch = 2.5
+
+[contracts.message-scheduler]
+path = 'contracts/message-scheduler.clar'
+clarity_version = 2
+epoch = 2.5
+
+[contracts.time-capsule-storage]
+path = 'contracts/time-capsule-storage.clar'
+clarity_version = 2
+epoch = 2.5
+[repl.analysis]
+passes = ['check_checker']
+
+[repl.analysis.check_checker]
+strict = false
+trusted_sender = false
+trusted_caller = false
+callee_filter = false
