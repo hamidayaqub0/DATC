@@ -51,11 +51,10 @@
   (ok (map-get? scheduled-messages { message-id: message-id }))
 )
 
-(define-read-only (get-deliverable-messages)
-  (filter is-deliverable (map-to-list scheduled-messages))
-)
-
-(define-private (is-deliverable (message { message-id: uint, sender: principal, recipient: principal, content-hash: (buff 32), delivery-time: uint, is-delivered: bool }))
-  (and (>= block-height (get delivery-time message)) (not (get is-delivered message)))
+(define-read-only (is-message-deliverable (message-id uint))
+  (match (map-get? scheduled-messages { message-id: message-id })
+    message (and (>= block-height (get delivery-time message)) (not (get is-delivered message)))
+    false
+  )
 )
 
